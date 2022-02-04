@@ -1,0 +1,67 @@
+
+
+<div class="row1" >
+    <h1 class="heading">BUY YOUR MEDS</h1>
+  </div>
+  
+  
+  <div class="row">
+  
+  
+    <div class="column" >
+      <p >Select your medicines</p>
+      <table class="pro">
+        <tr>
+          <th class="pro">Name</th>
+          <th class="pro">Description</th>
+          <th class="pro">Price</th>
+          <th class="pro">Buy</th>
+        </tr>
+        <tr *ngFor="let product of productStock">
+          <td class="pro">{{product.name}}</td>
+          <td class="pro">{{product.description}}</td>
+          <td class="pro" style="text-align: right;">{{product.price}}</td>
+          <td class="pro"><button #btn (click)="addTOCart(btn)" [id]="product.id">Add to cart</button></td>
+        </tr>
+      </table>
+      
+    </div>
+  
+   <p style="margin-left: 10%;"> YOUR CART</p>
+      <div *ngIf="cartNotVisible; else elseBlock">
+   
+      </div>
+  
+    
+      <ng-template #elseBlock>
+      <table class="cart">
+        <tr>
+          <th class="cart">Name</th>
+          <th class="cart">Price</th>
+          <th class="cart">Quantity</th>
+          <th class="cart">Buy</th>
+        </tr>
+        <tr *ngFor="let product of cartArr">
+          <td class="pro">{{product.name}}</td>
+          <td class="pro" style="text-align: right;">{{product.price}}</td>
+          <td class="pro" style="text-align: center;">{{product.quantity}} <button #btnI (click)="increaseProd(btnI)" [id]="product.id"> + </button> <button #btnD (click)="decreaseProd(btnD)" [id]="product.id"> - </button> </td>
+          <td class="pro"><button #btn (click)="deleteFormCart(btn)" [id]="product.id">Delete</button></td>
+        </tr>
+        <tr>
+          <th class="pro1">Total Bill</th>
+          <th class="pro1" style="text-align: center;">{{total}}</th>
+        </tr>
+        <tr>
+          <th class="pro">Tax Amount </th>
+          <th class="pro" style="text-align: center;">{{tax}}</th>
+        </tr>
+        <tr>
+          <th class="pro">Final Price</th>
+          <th class="pro" style="text-align: center;">{{grandTotal}}</th>
+        </tr>
+      </table>
+      </ng-template>
+  
+    </div>
+  
+
